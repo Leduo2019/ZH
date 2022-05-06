@@ -1,0 +1,30 @@
+/* pages/login/login.wxss */
+.login {
+  height: 100%;
+  background-color: #fafafa;
+}
+.content {
+  height: 60%;
+  padding: 0 60rpx;
+}
+.logo image {
+  width: 40%;
+  height: auto;
+  margin: auto;
+}
+.login .wechat-login {
+  border-radius: 80rpx;
+  background-color: var(--main-color);
+  color: #fff;
+  font-size: 18px;
+  line-height: 3;
+}
+.login .other-login {
+  border-radius: 80rpx;
+  background-color: #fff;
+  color: #444;
+  font-size: 18px;
+  line-height: 3;
+  margin-top: 20px;
+  border: 1rpx solid #eee;
+}

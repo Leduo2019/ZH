@@ -1,0 +1,30 @@
+<!--pages/user/user.wxml-->
+<view class="user column">
+  <view class="header px-6 pt-6">
+    <view class="card row-center px-6 py-6">
+      <view class="avatar">
+        <image src="../../static/images/default_avatar.png" mode="scaleToFill" />
+      </view>
+      <view class="name pl-6">
+        <view class="text-large">{{userInfo.name ? userInfo.name : '未登录'}}</view>
+        <view class="text-mini role pt-4" wx:if="{{userInfo.name}}">
+          <text wx:if="{{userInfo.rose}}">{{userInfo.rose}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="content px-6">
+    <view class="company px-6 pb-6">
+      <view class="text-medium main-color font-weight-bold pt-6">公司简介</view>
+      <view class="scroll-view pt-4 pb-6 text-small">
+        <scroll-view scroll-y>
+          {{company.content}}
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <view class="footer px-6">
+    <view class="logout" bindtap="logout" wx:if="{{userInfo.name}}">切换账号</view>
+    <view class="login" bindtap="login" wx:else>立即登录</view>
+  </view>
+</view>

@@ -1,0 +1,83 @@
+<!--index.wxml-->
+<view class="index">
+  <view class="header row-center text-resmall px-6 py-6">
+    <view class="area flex pr-6">
+      <picker range="{{areas}}" value="{{index}}" range-key="name" bindchange="bindChange">
+        <view class="picker row-end">
+          <text class="iconfont icon-triangle-bottom pr-2 flex-shrink"></text>
+          <view class="flex text-center text-line_1">{{areas[selected].name || '选择区域'}}</view>
+        </view>
+      </picker>
+    </view>
+    <checkbox-group bindchange="handleShowError" class="flex-shrink filter-error">
+      <label class="checkbox row-center {{params.onlyerr ? 'on' : 'off'}}">
+        <checkbox value="{{params.onlyerr}}" />
+        <text class="check mr-2 {{params.onlyerr ? 'active' : ''}}"></text>
+        仅异常
+      </label>
+    </checkbox-group>
+  </view>
+  <view class="content px-4 pb-6" wx:if="{{list.length > 0}}">
+    <view class="items">
+      <view class="item {{!item.show ? 'hide' : ''}}" wx:for="{{ list }}" wx:key="index">
+        <view class="top px-6 py-4">
+          <view class="row-center">
+            <view class="status row-center flex-shrink pr-4">
+              <text class="nok" wx:if="{{item.status === 1}}">超标 {{item.statusdesc}}</text>
+              <text class="ok" wx:elif="{{!item.status}}">正常</text>
+              <text wx:if="{{item.status === 2 || item.status === 99}}">离线 {{item.statusdesc}}</text>
+            </view>
+            <text class="text-medium font-weight-bold flex" selectable>{{ item.nodename }} </text>
+            <view class="date opacity-5 pl-4 text-right text-mini">{{item.time}}</view>
+          </view>
+        </view>
+        <view class="bottom row-between flex px-4">
+          <view class="child">
+            <view class="py-3 text-resmall font-weight-bold">区域</view>
+            <view class="text-mini">{{item.areaname}}</view>
+          </view>
+          <view class="child {{!item.tBias && item.tvalue !== null ? 'warn-color' : ''}}">
+            <view class="up text-resmall font-weight-bold">
+              温度<text class="iconfont icon-swap-{{item.tvalue < item.tmin ? 'down' : 'up'}}" wx:if="{{!item.tBias && item.tvalue !== null}}"></text>
+            </view>
+            <view class="down">
+              <view>{{item.tvalue === null ? '-' : item.tvalue}}</view>
+              <view class="pt-2 opacity-5 text-remini">
+                <block wx:if="{{item.tmin != null && item.tmax != null}}">[ {{item.tmin}}~{{item.tmax}} ]</block>
+                <block wx:else>[ -- ]</block>
+              </view>
+            </view>
+          </view>
+          <view class="child {{!item.hBias && item.hvalue !== null  ? 'warn-color' : ''}}">
+            <view class="up text-resmall font-weight-bold">
+              湿度<text class="iconfont icon-swap-{{item.hvalue < item.hmin ? 'down' : 'up'}}" wx:if="{{!item.hBias && item.hvalue !== null}}"></text>
+            </view>
+            <view class="down">
+              <view>{{item.hvalue === null ? '-' : item.hvalue}}</view>
+              <view class="pt-2 opacity-5 text-remini">
+                <block wx:if="{{item.hmin != null && item.hmax != null}}">[ {{item.hmin}}~{{item.hmax}} ]</block>
+                <block wx:else>[ -- ]</block>
+              </view>
+            </view>
+          </view>
+          <view class="child column-center">
+            <view class="text-resmall {{!item.userlimit ? 'opacity-6' : ''}}">
+              离线 
+              <text class="pl-2 iconfont icon-sound-{{item.userlimit ? 'filling' : 'mute'}}"></text>
+            </view>
+            <view class="text-resmall pt-2 {{!item.userlimit ? 'opacity-6' : ''}}">
+              超标 
+              <text class="pl-2 iconfont icon-sound-{{item.userlimit ? 'filling' : 'mute'}}"></text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 无数据 -->
+  <view class="nodata text-center px-6 py-6" wx:if="{{list.length <= 0}}">
+    <van-empty description="暂无数据" />
+  </view>
+  <!-- 到底了 -->
+  <bottom wx:if="{{list.length > 0}}" />
+</view>

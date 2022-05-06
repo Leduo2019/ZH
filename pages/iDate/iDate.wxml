@@ -1,0 +1,106 @@
+<!--pages/iDate/iDate.wxml-->
+<view class="iDate">
+  <view class="header text-resmall px-6 py-6">
+    <section class="row-center row-between ">
+      <view class="row-center flex">
+        <picker class="mr-3" mode="multiSelector" range="{{multiAreas}}" value="{{multiAreaIdx}}" bindchange="bindChange" bindcolumnchange="bindChangeColunm">
+          <view class="picker row-end text-center">
+            <text class="iconfont icon-triangle-bottom flex-shrink"></text>
+            <view class="flex text-line_1">
+              <block wx:if="{{!multiAreaIdx[0] && !multiAreaIdx[1]}}">全部区域</block>
+              <block wx:elif="{{multiAreaIdx[0] && !multiAreaIdx[1]}}">{{multiAreas[0][multiAreaIdx[0]]}}</block>
+              <block wx:else>{{multiAreas[1][multiAreaIdx[1]]}}</block>
+            </view>
+          </view>
+        </picker>
+      </view>
+      <checkbox-group bindchange="handleShowError" class="flex-shrink filter-error ml-4">
+        <label class="checkbox row-center {{params.limit ? 'on' : 'off'}}">
+          <checkbox value="{{params.limit}}" />
+          <text class="check mr-2 {{params.limit ? 'active' : ''}}"></text>
+          仅超标
+        </label>
+      </checkbox-group>
+    </section>
+    <section class="row-center row-between pt-6">
+      <view class="row-center flex">
+        <picker class="mr-2" mode="multiSelector" bindchange="bindStarTimeChange" bindcolumnchange="bindStarTimeColumnChange" value="{{starTimeIdx}}" range="{{starTimeArr}}">
+          <view class="picker row-end text-center">
+            <text class="iconfont icon-triangle-bottom flex-shrink"></text>
+            <view class="flex text-line_1">{{params.start || '开始时间'}}</view>
+          </view>
+        </picker>
+        <picker class="ml-2" mode="multiSelector" bindchange="bindEndTimeChange" bindcolumnchange="bindEndTimeColumnChange" value="{{endTimeIdx}}" range="{{endTimeArr}}">
+          <view class="picker row-end text-center">
+            <text class="iconfont icon-triangle-bottom flex-shrink"></text>
+            <view class="flex text-line_1">{{params.end || '结束时间'}}</view>
+          </view>
+        </picker>
+      </view>
+    </section>
+  </view>
+  <view class="content px-4 pb-6" wx:if="{{list.length > 0}}">
+    <view class="items">
+      <view class="item {{!item.show ? 'hide' : ''}}" wx:for="{{ list }}" wx:key="index">
+        <view class="store row-center row-between text-medium px-6 py-6">
+          <text class="font-weight-bold" selectable>{{item.nodename}}</text>
+          <text class="text-mini opacity-7">{{item.time}}</text>
+        </view>
+        <view class="bottom row-between flex px-4">
+          <view class="child">
+            <view class="py-3 text-resmall font-weight-bold">状态</view>
+            <view class="status text-mini mt-4">
+              <text class="nok" wx:if="{{item.status === 1}}">超标 {{item.statusdesc}}</text>
+              <text class="ok" wx:elif="{{!item.status || item.status !== 1}}">正常</text>
+              <!-- <text wx:if="{{item.status === 2 || item.status === 99}}">离线 {{item.statusdesc}}</text> -->
+            </view>
+          </view>
+          <view class="child">
+            <view class="py-3 text-resmall font-weight-bold">区域</view>
+            <view class="text-mini">{{item.areaname}}</view>
+          </view>
+          <view class="child {{!item.tBias && item.tvalue !== null ? 'warn-color' : ''}}">
+            <view class="up text-resmall font-weight-bold">
+              温度<text class="iconfont icon-swap-{{item.tvalue < item.tmin ? 'down' : 'up'}}" wx:if="{{!item.tBias && item.tvalue !== null}}"></text>
+            </view>
+            <view class="down">
+              <view>{{item.tvalue === null ? '-' : item.tvalue}}</view>
+              <view class="pt-2 opacity-5 text-remini">
+                <block wx:if="{{item.tmin != null && item.tmax != null}}">[ {{item.tmin}}~{{item.tmax}} ]</block>
+                <block wx:else>[ -- ]</block>
+              </view>
+            </view>
+          </view>
+          <view class="child {{!item.hBias && item.hvalue !== null  ? 'warn-color' : ''}}">
+            <view class="up text-resmall font-weight-bold">
+              湿度<text class="iconfont icon-swap-{{item.hvalue < item.hmin ? 'down' : 'up'}}" wx:if="{{!item.hBias && item.hvalue !== null}}"></text>
+            </view>
+            <view class="down">
+              <view>{{item.hvalue === null ? '-' : item.hvalue}}</view>
+              <view class="pt-2 opacity-5 text-remini">
+                <block wx:if="{{item.hmin != null && item.hmax != null}}">[ {{item.hmin}}~{{item.hmax}} ]</block>
+                <block wx:else>[ -- ]</block>
+              </view>
+            </view>
+          </view>
+          <view class="child column-center">
+            <view class="text-resmall {{!item.userlimit ? 'opacity-6' : ''}}">
+              离线 
+              <text class="pl-2 iconfont icon-sound-{{item.userlimit ? 'filling' : 'mute'}}"></text>
+            </view>
+            <view class="text-resmall pt-2 {{!item.userlimit ? 'opacity-6' : ''}}">
+              超标 
+              <text class="pl-2 iconfont icon-sound-{{item.userlimit ? 'filling' : 'mute'}}"></text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 无数据 -->
+  <view class="nodata text-center px-6 py-6" wx:if="{{list.length <= 0}}">
+    <van-empty description="暂无数据" />
+  </view>
+  <!-- 到底了 -->
+  <bottom wx:if="{{list.length > 0 && params.nPage >= totalPage}}" />
+</view>

@@ -1,0 +1,84 @@
+/* pages/accountLogin/accountLogin.wxss */
+.account-login {
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+}
+.account-login::before {
+  content: '';
+  position: absolute;
+  background-color: var(--main-color);
+  z-index: -1;
+  width: 100%;
+  height: 20%;
+  top: 0;
+}
+.account-login::after {
+  content: '';
+  position: absolute;
+  background-color: var(--main-color);
+  z-index: -1;
+  width: 750rpx;
+  height: 750rpx;
+  transform: rotate(45deg);
+  top: 0;
+}
+.content {
+  height: 70%;
+  padding: 0 50rpx;
+}
+.logo {
+  width: 30%;
+  margin: 0 auto 40rpx;
+}
+.logo image {
+  width: 100%;
+  height: auto;
+}
+form {
+  background-color: #fff;
+  border-radius: 25rpx;
+  padding: 80rpx 40rpx;
+  overflow: hidden;
+  box-shadow: 0 0 0rpx rgba(0,0,0, .05), 0 5rpx 5rpx rgba(37, 114, 254, .1), 0 10rpx 10rpx rgba(37, 114, 254, .1);
+}
+.form-group {
+  position: relative;
+}
+.form-group input {
+  background-color: #f9f9f9;
+  border-radius: 40rpx;
+  padding: 24rpx 100rpx;
+  width: 100%;
+}
+.form-group .iconfont {
+  position: absolute;
+  width: 100rpx;
+  height: 100%;
+  text-align: center;
+  opacity: .2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-group .iconfont.tips {
+  font-size: 50rpx;
+  left: 0;
+}
+.form-group .iconfont.close {
+  right: 0;
+  font-size: 40rpx;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+.submit {
+  background-color: var(--main-color);
+  color: #fff;
+  border-radius: 80rpx;
+}
+.placeholder {
+  font-size: 26rpx;
+  color: #999;
+}

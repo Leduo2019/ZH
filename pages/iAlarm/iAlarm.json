@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "bottom": "../../components/bottom/bottom",
+    "van-empty": "@vant/weapp/empty/index"
+  },
+  "navigationBarTitleText": "报警"
+}

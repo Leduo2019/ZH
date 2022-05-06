@@ -1,0 +1,47 @@
+<!--index.wxml-->
+<view class="count">
+  <view class="header text-resmall px-6 py-6">
+    <section class="row-center row-between ">
+      <view class="row-center flex">
+        <picker class="mr-3" mode="multiSelector" range="{{multiAreas}}" value="{{multiAreaIdx}}" bindchange="bindChange" bindcolumnchange="bindChangeColunm">
+          <view class="picker row-end text-center">
+            <text class="iconfont icon-triangle-bottom flex-shrink"></text>
+            <view class="flex text-line_1">选择探头 {{!params.node ? '' : '：' + (multiAreas[1].length <= 0 ? '未选择' : multiAreas[1][multiAreaIdx[1]])}}</view>
+          </view>
+        </picker>
+      </view>
+      <view class="row-center group">
+        间隔：
+        <input type="number"	bindblur="setInterval" class="flex-shrink input" placeholder-class="input-placeholder" />
+        S
+      </view>
+    </section>
+    <section class="row-center row-between pt-6">
+      <view class="row-center flex">
+        <picker class="mr-2" mode="multiSelector" bindchange="bindStarTimeChange" bindcolumnchange="bindStarTimeColumnChange" value="{{starTimeIdx}}" range="{{starTimeArr}}">
+          <view class="picker row-end text-center">
+            <text class="iconfont icon-triangle-bottom flex-shrink"></text>
+            <view class="flex text-line_1">{{params.start || '开始时间'}}</view>
+          </view>
+        </picker>
+        <picker class="ml-2" mode="multiSelector" bindchange="bindEndTimeChange" bindcolumnchange="bindEndTimeColumnChange" value="{{endTimeIdx}}" range="{{endTimeArr}}">
+          <view class="picker row-end text-center">
+            <text class="iconfont icon-triangle-bottom flex-shrink"></text>
+            <view class="flex text-line_1">{{params.end || '结束时间'}}</view>
+          </view>
+        </picker>
+      </view>
+    </section>
+    <section class="row-center row-between pt-6">
+      <checkbox-group bindchange="handleShowError" class="flex-shrink filter-error ml-4">
+        <label class="checkbox row-center {{isHumidity ? 'on' : 'off'}}">
+          <checkbox value="{{isHumidity}}" />
+          <text class="check mr-3 {{isHumidity ? 'active' : ''}}"></text>
+          湿度报表
+        </label>
+      </checkbox-group>
+      <view class="search ml-6" bindtap="setEchart">查询</view>
+    </section>
+  </view>
+  <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+</view>

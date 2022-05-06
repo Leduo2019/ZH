@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "bottom": "../../components/bottom/bottom",
+    "van-empty": "@vant/weapp/empty/index"
+  },
+  "navigationBarTitleText": "实时监测",
+  "enablePullDownRefresh": true
+}

@@ -1,0 +1,104 @@
+/* pages/iAlarm/iAlarm.wxss */
+.alarm {
+  min-height: 100%;
+}
+.header {
+  background-color: var(--main-color);
+  color: #fff;
+}
+.header picker {
+  background-color: rgba(0,0,0,.2);
+  border-radius: 80rpx;
+  width: 100%;
+  padding: 0 30rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.header .filter-error checkbox {
+  opacity: 0;
+  position: absolute;
+}
+.header .filter-error .check {
+  width: 22rpx;
+  height: 22rpx;
+  border-radius: 50px;
+  border: 2rpx solid #fff;
+  position: relative;
+}
+.header .filter-error .check::before {
+  content: '';
+  width: 11rpx;
+  height: 11rpx;
+  left: 6rpx;
+  top: 6rpx;
+  border-radius: 20rpx;
+  position: absolute;
+  background-color: #fff;
+  transform: scale(1.2);
+  opacity: 0;
+}
+.header .filter-error .check.active::before {
+  opacity: 1;
+}
+.content {
+  background-color: #fff;
+  color: #333;
+  position: relative;
+  z-index: 1;
+}
+.content::before {
+  content: "";
+  height: 50rpx;
+  width: 100%;
+  position: absolute;
+  background-color: var(--main-color);
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.content .item {
+  border-radius: 35rpx;
+  background-color: #fff;
+  margin-bottom: 35rpx;
+  box-shadow: 0 0 5rpx rgba(0, 0, 0, .05), 0 2rpx 10rpx rgba(37, 114, 254, .1), 0 5rpx 15rpx rgba(37, 114, 254,.05);
+}
+.item .bottom {
+  border-top: 1px solid rgba(0,0,0,.05);
+  color: #414141;
+}
+.item .bottom .child {
+  padding: 0 10rpx;
+  flex: 1;
+  text-align: center;
+  font-size: 24rpx;
+}
+.item .bottom .child:not(:last-child) {
+  border-right: 1px solid rgba(0,0,0,.05);
+}
+.item .bottom .child:nth-child(2),  
+.item .bottom .child:last-child {
+  flex: 1.5;
+}
+.item .bottom .child .up {
+  padding: 15rpx 0;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.item .bottom .child .down {
+  padding: 10rpx 0 20rpx;
+  font-size: 24rpx;
+  opacity: .6;
+}
+.item .status text {
+  background-color: #bbb;
+  color: #fff;
+  font-size: 22rpx;
+  padding: 6rpx 20rpx;
+  border-radius: 5rpx;
+}
+.item .status text.ok {
+  background-color: var(--safe-color);
+}
+.item .status text.nok {
+  background-color: var(--warn-color);
+}

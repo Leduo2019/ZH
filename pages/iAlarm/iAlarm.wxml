@@ -1,0 +1,54 @@
+<!--pages/iAlarm/iAlarm.wxml-->
+<view class="alarm">
+  
+  <view class="header text-resmall px-6 py-6">
+    <section class="row-center row-between ">
+      <picker class="mr-3" mode="multiSelector" range="{{multiAreas}}" value="{{multiAreaIdx}}" bindchange="bindChange" bindcolumnchange="bindChangeColunm">
+        <view class="picker row-end text-center">
+          <text class="iconfont icon-triangle-bottom flex-shrink"></text>
+          <view class="flex text-line_1">
+            <block wx:if="{{!multiAreaIdx[0] && !multiAreaIdx[1]}}">全部区域</block>
+            <block wx:elif="{{multiAreaIdx[0] && !multiAreaIdx[1]}}">{{multiAreas[0][multiAreaIdx[0]]}}</block>
+            <block wx:else>{{multiAreas[1][multiAreaIdx[1]]}}</block>
+          </view>
+        </view>
+      </picker>
+    </section>
+  </view>
+  <view class="content px-4 pb-6" wx:if="{{list.length > 0}}">
+    <view class="items">
+      <view class="item" wx:for="{{ list }}" wx:key="index">
+        <view class="store row-center text-medium px-6 py-6">
+          <view class="status text-mini mr-4 flex-shrink">
+            <text class="nok">超标</text>
+          </view>
+          <text class="font-weight-bold" selectable>{{item.nodename}}</text>
+        </view>
+        <view class="bottom row-between flex px-3">
+          <view class="child">
+            <view class="py-3 text-small font-weight-bold">区域</view>
+            <view class="down">{{item.areaname}}</view>
+          </view>
+          <view class="child">
+            <view class="py-3 text-small font-weight-bold">处理原因</view>
+            <view class="down">{{item.desc}}</view>
+          </view>
+          <view class="child">
+            <view class="py-3 text-small font-weight-bold"><text class="iconfont icon-timeline"></text> 时间</view>
+            <view class="down">
+              <view>{{item.stime}}</view>
+              <view>~</view>
+              <view>{{item.etime}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 无数据 -->
+  <view class="nodata text-center px-6 py-6" wx:if="{{list.length <= 0}}">
+    <van-empty description="暂无数据" />
+  </view>
+  <!-- 到底了 -->
+  <bottom wx:if="{{list.length > 0}}" />
+</view>

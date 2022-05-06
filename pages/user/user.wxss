@@ -1,0 +1,63 @@
+/* pages/user/user.wxss */
+.user {
+  min-height: 100%;
+  color: #414141;
+  background-color: #f5f5f5;
+}
+.header {
+  background-color: var(--main-color);
+  color: #fff;
+  flex-shrink: 0;
+}
+.header .card {
+  background-color: rgba(0,0,0,.3);
+  border-radius: 25rpx 25rpx 0 0;
+  padding-top: 40rpx;
+  padding-bottom: 60rpx;
+}
+.header .card .avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 120rpx;
+  overflow: hidden;
+}
+.header .card .avatar image {
+  width: 100%;
+  height: 100%;
+  border-radius: 120rpx;
+}
+.header .card .role text {
+  margin-right: 10rpx;
+  background-color: #f6e7bd;
+  border-radius: 20rpx;
+  padding: 6rpx 30rpx;
+  color: #764b20;
+  font-size: 20rpx;
+}
+.content .company {
+  background-color: #fff;
+  height: 100%;
+  border-radius: 0 0 25rpx 25rpx;
+}
+.content scroll-view {
+  max-height: 60%;
+  line-height: 1.7;
+}
+.footer {
+  flex-shrink: 0;
+  padding-top: 30rpx;
+  padding-bottom: 60rpx;
+}
+.footer .logout {
+  background-color: #fff;
+  border-radius: 25rpx;
+  padding: 25rpx 20rpx;
+  text-align: center;
+}
+.footer .login {
+  background-color: var(--main-color);
+  color: #fff;
+  border-radius: 25rpx;
+  padding: 25rpx 20rpx;
+  text-align: center;
+}

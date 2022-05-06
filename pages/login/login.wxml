@@ -1,0 +1,12 @@
+<view class="login column-center">
+  <view class="content column-around text-center">
+    <view class="logo column">
+      <image src="https://iotservice.zd100com.cn/sLogo0.png" mode="widthFix" />
+      <text class="text-oversize font-weight-bold">广州智和</text>
+    </view>
+    <view class="btn-group py-6">
+      <view class="wechat-login" bindtap="getUserProfile">微信一键登录</view>
+      <navigator class="other-login" url="/pages/accountLogin/accountLogin">其他方式登录</navigator>
+    </view>
+  </view>
+</view>

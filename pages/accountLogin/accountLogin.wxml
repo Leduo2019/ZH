@@ -1,0 +1,53 @@
+<!--pages/accountLogin/accountLogin.wxml-->
+<view class="account-login column-center">
+  <view class="content column">
+    <form class="form" bindsubmit="submit">
+      <view class="logo">
+        <image src="https://iotservice.zd100com.cn/sLogo0.png" mode="widthFix" />
+      </view>
+      <view class="form-group row-center">
+        <text class="iconfont icon-userName-fill tips"></text>
+        <input 
+          type="text"
+          name="name"
+          placeholder="用户名/手机号"
+          required
+          model:value="{{ name }}"
+          placeholder-class="placeholder"
+          disabled="{{ disabled }}"
+          :focus="{{ closeType === 1 }}"
+          bindfocus="handleFocus"
+          bindblur="handleBlur"
+          data-type="name"
+        />
+        <text 
+          class="iconfont icon-add-fill close {{ (name !== '' && closeType === 1) ? 'show' : 'hidden' }}"
+          bindtap="clear"
+          data-clear="name"
+        ></text>
+      </view>
+      <view class="form-group row-center mt-6">
+        <text class="iconfont icon-password-fill tips"></text>
+        <input 
+          type="password"
+          name="pwd"
+          placeholder="请输入密码"
+          required
+          model:value="{{ pwd }}"
+          placeholder-class="placeholder"
+          disabled="{{ disabled }}"
+          :focus="{{ closeType === 2 }}"
+          bindfocus="handleFocus"
+          bindblur="handleBlur"
+          data-type="pwd"
+        />
+        <text 
+          class="iconfont icon-add-fill close {{ (pwd !== '' && closeType === 2) ? 'show' : 'hidden' }}"
+          bindtap="clear"
+          data-clear="pwd"
+        ></text>
+      </view>
+      <button form-type="submit" class="submit my-12" disabled="{{ disabled }}" loading="{{ loading }}">登录</button>
+    </form>
+  </view>
+</view>

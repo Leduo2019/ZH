@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/iDate/iDate",
+    "pages/iCount/iCount",
+    "pages/iAlarm/iAlarm",
+    "pages/user/user",
+    "pages/login/login",
+    "pages/accountLogin/accountLogin"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2572fe",
+    "navigationBarTitleText": "广州智和",
+    "navigationBarTextStyle": "white",
+    "restartStrategy": "homePage"
+  },
+  "tabBar": {
+    "backgroundColor": "#fff",
+    "color": "#ccc",
+    "selectedColor": "#2572fe",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "./static/images/nav_1.png",
+        "selectedIconPath": "./static/images/nav_active_1.png",
+        "text": "实时"
+      },
+      {
+        "pagePath": "pages/iDate/iDate",
+        "iconPath": "./static/images/nav_2.png",
+        "selectedIconPath": "./static/images/nav_active_2.png",
+        "text": "数据"
+      },
+      {
+        "pagePath": "pages/iCount/iCount",
+        "iconPath": "./static/images/nav_3.png",
+        "selectedIconPath": "./static/images/nav_active_3.png",
+        "text": "统计"
+      },
+      {
+        "pagePath": "pages/iAlarm/iAlarm",
+        "iconPath": "./static/images/nav_4.png",
+        "selectedIconPath": "./static/images/nav_active_4.png",
+        "text": "报警"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "./static/images/nav_5.png",
+        "selectedIconPath": "./static/images/nav_active_5.png",
+        "text": "关于"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
